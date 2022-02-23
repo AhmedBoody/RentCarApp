@@ -1,8 +1,35 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
+		<PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="5.0.0" />
+		<PackageReference Include="Dapper" Version="2.0.30" />
+		<PackageReference Include="FluentValidation" Version="8.6.1" />
+		<PackageReference Include="Hellang.Middleware.ProblemDetails" Version="3.1.0" />
+		<PackageReference Include="MediatR" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.0" />
+		 <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+		<PackageReference Include="Quartz" Version="3.0.7" />
+		<PackageReference Include="Serilog.Formatting.Compact" Version="1.1.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+		<PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\RentCarApp.Application\RentCarApp.Application.csproj" />
+	  <ProjectReference Include="..\RentCarApp.Infrastructure\RentCarApp.Infrastructure.csproj" />
+	</ItemGroup>
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+		<GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
+	</PropertyGroup>
 </Project>
