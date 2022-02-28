@@ -7,6 +7,7 @@ namespace RentCarApp.Domain.SeedWork
     /// </summary>
     public abstract class Entity
     {
+        public bool IsDeleted { get; set; }
         private List<IDomainEvent> _domainEvents;
 
         /// <summary>

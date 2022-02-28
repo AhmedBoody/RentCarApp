@@ -15,19 +15,24 @@ namespace RentCarApp.Application.Cities.DomainServices
             _sqlConnectionFactory = sqlConnectionFactory;
         }
 
-        public bool IsUnique(string nameAr,string nameEn)
+        public bool IsUnique(string nameAr,string nameEn,string id = null)
         {
             var connection = this._sqlConnectionFactory.GetOpenConnection();
 
-            const string sql = "SELECT TOP 1 1" +
-                               "FROM [lookups].[Cities] AS [Cities] " +
-                               "WHERE [Cities].[NameAr] = @nameAr" +
-                               "OR [Cities].[NameEn] = @nameEn";
+            const string sql = @"SELECT TOP 1 1 
+                                FROM [lookups].[Cities] AS [Cities]  
+                                WHERE (@id IS NULL OR Id != @id)
+                                AND (
+                                [Cities].[NameAr] = @nameAr   
+                                OR [Cities].[NameEn] = @nameEn
+                                );
+                                ";
             var cityKey = connection.QuerySingleOrDefault<int?>(sql,
                             new
                             {
-                                NameAr = nameAr,
-                                NameEn = nameEn
+                                nameAr = nameAr,
+                                nameEn = nameEn,
+                                id = id,
                             });
 
             return !cityKey.HasValue;

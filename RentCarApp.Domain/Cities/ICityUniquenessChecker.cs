@@ -6,6 +6,6 @@ namespace RentCarApp.Domain.Cities
 {
     public interface ICityUniquenessChecker
     {
-        bool IsUnique(string nameAr, string nameEn);
+        bool IsUnique(string nameAr, string nameEn ,string id = null);
     }
 }

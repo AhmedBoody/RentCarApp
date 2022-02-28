@@ -31,11 +31,11 @@ namespace RentCarApp.Infrastructure.Database
                 .As<IUnitOfWork>()
                 .InstancePerLifetimeScope();
 
-
-            builder.RegisterType<CityRepository>()
-                .As<ICityRepository>()
+            builder.RegisterGeneric(typeof(Repository<>))
+                .As(typeof(IRepository<>))
                 .InstancePerLifetimeScope();
 
+            
 
             builder.RegisterType<StronglyTypedIdValueConverterSelector>()
                 .As<IValueConverterSelector>()

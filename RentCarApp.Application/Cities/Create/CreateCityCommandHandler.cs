@@ -12,11 +12,11 @@ namespace RentCarApp.Application.Cities.Create
 {
     public class CreateCityCommandHandler : ICommandHandler<CreateCityCommand, CityDto>
     {
-        private readonly ICityRepository _cityRepository;
+        private readonly IRepository<City> _cityRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICityUniquenessChecker _cityUniquenessChecker;
 
-        public CreateCityCommandHandler(ICityRepository cityRepository, ICityUniquenessChecker cityUniquenessChecker, IUnitOfWork unitOfWork)
+        public CreateCityCommandHandler(IRepository<City> cityRepository, ICityUniquenessChecker cityUniquenessChecker, IUnitOfWork unitOfWork)
         {
             _cityRepository = cityRepository;
             _unitOfWork = unitOfWork;
@@ -30,7 +30,7 @@ namespace RentCarApp.Application.Cities.Create
             await _unitOfWork.CommitAsync(cancellationToken);
             return new CityDto
             {
-                Id = newCity.Id.Value
+                Id = newCity.Id
             };
         }
     }
