@@ -7,8 +7,8 @@ namespace RentCarApp.Domain.Cities
     public class City : Entity, IAggregateRoot
     {
         public Guid Id { get; private set; }
-        public string nameAr { get; set; }
-        public string nameEn { get; set; }
+        public string nameAr { get; private set; }
+        public string nameEn { get; private set; }
         public City()
         {
             //Only For EF.
