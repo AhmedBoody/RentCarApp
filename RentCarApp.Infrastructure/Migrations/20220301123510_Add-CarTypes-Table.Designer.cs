@@ -3,49 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentCarApp.Infrastructure.Database;
 
 namespace RentCarApp.Infrastructure.Migrations
 {
     [DbContext(typeof(RentCarContext))]
-    partial class RentCarContextModelSnapshot : ModelSnapshot
+    [Migration("20220301123510_Add-CarTypes-Table")]
+    partial class AddCarTypesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("RentCarApp.Domain.Cities.CarModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("manufactureId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("ManufactureId");
-
-                    b.Property<string>("nameAr")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("NameAr");
-
-                    b.Property<string>("nameEn")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("NameEn");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("manufactureId");
-
-                    b.ToTable("CarModels", "lookups");
-                });
 
             modelBuilder.Entity("RentCarApp.Domain.Cities.CarType", b =>
                 {
@@ -91,50 +65,6 @@ namespace RentCarApp.Infrastructure.Migrations
                     b.ToTable("Cities", "lookups");
                 });
 
-            modelBuilder.Entity("RentCarApp.Domain.Features.Feature", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("nameAr")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("NameAr");
-
-                    b.Property<string>("nameEn")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("NameEn");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Features", "lookups");
-                });
-
-            modelBuilder.Entity("RentCarApp.Domain.Manufacturers.Manufacturer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("nameAr")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("NameAr");
-
-                    b.Property<string>("nameEn")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("NameEn");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Manufacturers", "lookups");
-                });
-
             modelBuilder.Entity("RentCarApp.Infrastructure.Processing.InternalCommands.InternalCommand", b =>
                 {
                     b.Property<Guid>("Id")
@@ -174,22 +104,6 @@ namespace RentCarApp.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OutboxMessages", "app");
-                });
-
-            modelBuilder.Entity("RentCarApp.Domain.Cities.CarModel", b =>
-                {
-                    b.HasOne("RentCarApp.Domain.Manufacturers.Manufacturer", "Manufacturer")
-                        .WithMany("CarModels")
-                        .HasForeignKey("manufactureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Manufacturer");
-                });
-
-            modelBuilder.Entity("RentCarApp.Domain.Manufacturers.Manufacturer", b =>
-                {
-                    b.Navigation("CarModels");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentCarApp.Infrastructure.Database;
 
 namespace RentCarApp.Infrastructure.Migrations
 {
     [DbContext(typeof(RentCarContext))]
-    partial class RentCarContextModelSnapshot : ModelSnapshot
+    [Migration("20220301131430_Add-CarManafacture-And-CarModel-Tables")]
+    partial class AddCarManafactureAndCarModelTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,28 +91,6 @@ namespace RentCarApp.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities", "lookups");
-                });
-
-            modelBuilder.Entity("RentCarApp.Domain.Features.Feature", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("nameAr")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("NameAr");
-
-                    b.Property<string>("nameEn")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("NameEn");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Features", "lookups");
                 });
 
             modelBuilder.Entity("RentCarApp.Domain.Manufacturers.Manufacturer", b =>

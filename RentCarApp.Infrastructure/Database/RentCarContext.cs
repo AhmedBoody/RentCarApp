@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RentCarApp.Domain.Cities;
-
+using RentCarApp.Domain.Features;
+using RentCarApp.Domain.Manufacturers;
 using RentCarApp.Infrastructure.Processing.InternalCommands;
 using RentCarApp.Infrastructure.Processing.Outbox;
 using System;
@@ -13,6 +14,10 @@ namespace RentCarApp.Infrastructure.Database
     {
 
         public DbSet<City> Cities { get; set; }
+        public DbSet<CarType> CarTypes { get; set; }
+        public DbSet<Manufacturer> Manufactures { get; set; }
+        public DbSet<Feature> Features { get; set; }
+        public DbSet<CarModel> CarModels { get; set; }
         public DbSet<OutboxMessage> OutboxMessages { get; set; }
         public DbSet<InternalCommand> InternalCommands { get; set; }
 

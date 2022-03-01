@@ -6,7 +6,7 @@ using RentCarApp.Application.Configuration.Data;
 using RentCarApp.Domain.Cities;
 using RentCarApp.Domain.SeedWork;
 using RentCarApp.Infrastructure.Domain;
-using RentCarApp.Infrastructure.Domain.Cities;
+using RentCarApp.Infrastructure.Domain.MappingEFForDB;
 using RentCarApp.Infrastructure.SeedWork;
 
 namespace RentCarApp.Infrastructure.Database

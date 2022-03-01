@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RentCarApp.Domain.Cities;
 using RentCarApp.Infrastructure.Database;
 
-namespace RentCarApp.Infrastructure.Domain.Cities
+namespace RentCarApp.Infrastructure.Domain.MappingEFForDB
 {
     internal sealed class CityEntityTypeConfiguration : IEntityTypeConfiguration<City>
     {
