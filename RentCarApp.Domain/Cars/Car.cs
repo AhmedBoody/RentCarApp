@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using RentCarApp.Domain.Cars.ValueObjects;
 using RentCarApp.Domain.Cities.Rules;
+using RentCarApp.Domain.Manufacturers;
 using RentCarApp.Domain.SeedWork;
 using RentCarApp.Domain.SharedKernel;
 
@@ -14,27 +16,41 @@ namespace RentCarApp.Domain.Cities
         public MoneyValue DailyRent { get; private set; }
         public MoneyValue WeeklyRent { get; private set; }
         public Guid CarModelId { get; private set; }
-        public CarModel CarModel { get; private set; }  
-        
         public Guid CarTypelId { get; private set; }
-        public CarType CarType { get; private set; }    
+        public List<CarFeature> CarFeatures { get; private set; }
 
         public Car()
         {
             //Only For EF.
         }
-        //public Car(string nameAr, string nameEn,string id = null)
-        //{
-        //    this.Id = string.IsNullOrEmpty(id) ? Guid.NewGuid() : Guid.Parse(id);
-        //    this.nameAr = nameAr;
-        //    this.nameEn = nameEn;
-        //}
+        private Car(Guid id, MoneyValue dailyRate, MoneyValue weeklyRate, Guid carModelId, Guid carTypeId, ModelYearValue modelYear, PlateNumberValue plateNumber)
+        {
+            this.Id = id;
+            this.DailyRent = dailyRate;
+            this.WeeklyRent = weeklyRate;
+            this.ModelYear = modelYear;
+            this.PlateNumber = plateNumber;
+            this.CarTypelId = carTypeId;
+            this.CarModelId = carModelId;
+        }
 
-        //public static City CreateCity(string arabicName, string englishName, ICityUniquenessChecker _cityUniquenessChecker)
-        //{
-        //    CheckRule(new CityUniquenessNameRole(_cityUniquenessChecker, arabicName, englishName));
-        //    return new City(arabicName, englishName);
-        //}
+        public static Car CreateCar(Guid id,
+            string currency,
+            decimal dailyRent,
+            decimal weeklyRent,
+            int modelYear,
+            string plateNumber,
+            Guid carModelId,
+            Guid carTypeId)
+        {
+            return new Car(id,
+                 MoneyValue.Of(dailyRent, currency),
+                  MoneyValue.Of(weeklyRent, currency),
+                  carModelId,
+                  carTypeId,
+                  ModelYearValue.Of(modelYear),
+                  PlateNumberValue.Of(plateNumber,id.ToString()));
+        }
 
     }
 }

@@ -12,6 +12,7 @@ namespace RentCarApp.Domain.Cities
         public string nameEn { get; set; }
         public Guid manufactureId { get; set; }
         public Manufacturer Manufacturer { get; set; }
+        public int CarCounter { get; set; }
         
     }
 }
