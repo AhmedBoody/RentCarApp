@@ -29,7 +29,6 @@ namespace RentCarApp.API.Controllers
         public async Task<IActionResult> CreateCity([FromBody] CreateCityRequest request)
         {
             var customer = await _mediator.Send(new CreateCityCommand(request.NameAr, request.NameAr));
-
             return Created(string.Empty, customer);
         }
 
